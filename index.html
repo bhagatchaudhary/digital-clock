@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font: bold 16px Arial, Helvetica, sans-serif;
+        background-color: black;
+    }
+
+    .clock {
+        border: 1px solid #606060;
+        color: #fff;
+        padding: 40px;
+        border-radius: 10px;
+        background-color: #222222;
+    }
+
+    #date {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .clock ul {
+        list-style: none;
+        display: flex;
+        font-size: 90px;
+        gap: 15px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="clock">
+            <div id="date">Monday 26 september 2023</div>
+            <ul>
+                <li id="hour">10</li>
+                <li id="point">:</li>
+                <li id="min">10</li>
+                <li id="point">:</li>
+                <li id="secon">10</li>
+                <li id="day">PM</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function clock() {
+            var monthsName = ["january", "Febrary", "March", "April", "May", "June", "JUly", "Agust", "September", "October", "November", "December"];
+            var daysName = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+            var today = new Date();
+            
+            document.getElementById("date").innerHTML = (daysName[today.getDay()] + " " + today.getDate() + " " + monthsName[today.getMonth()] + ' ' + today.getFullYear());
+
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            var day = h<11 ? 'AM': 'PM';
+
+            h = h<10? '0'+h: h;
+            m = m<10? '0'+m: m;
+            s = s<10? '0'+s: s;
+
+            document.getElementById("hour").innerHTML = h;
+            document.getElementById("min").innerHTML = m;
+            document.getElementById("secon").innerHTML = s;
+            document.getElementById("day").innerHTML = day;
+
+        } var inter = setInterval(clock, 400);
+    </script>
+</body>
+
+</html>
